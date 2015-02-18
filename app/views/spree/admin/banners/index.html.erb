@@ -1,29 +1,37 @@
-<div class='toolbar'>
-  <ul class='actions'>
-    <li>
-      <p><%= button_link_to t("new_banner"), new_object_url, :icon => 'add' %></p>
-    </li>
-  </ul>
-  <br class='clear' />
-</div>
+<% content_for :page_title do %>
+  <%= t("Banner_listing") %>
+<% end %>
 
-<h1><%= t("listing_widgets") %></h1>
+<% content_for :page_actions do %>
+  <li>
+    <p><%= button_link_to t("new_banner"), new_object_url, :icon => 'add' %></p>
+  </li>
+<% end %>
 
 <p><%=t("reorder_explain")%></p>
 
-<table id="banners" class="index">
+<table class="index" id="banners" data-hook>
+  <colgroup>
+    <col style="width: 12.5%">
+    <col style="width: 12.5%">
+    <col style="width: 12.5%">
+    <col style="width: 12.5%">
+    <col style="width: 12.5%">
+    <col style="width: 12.5%">
+    <col style="width: 12.5%">
+  </colgroup>
   <thead>
-  <tr>
-    <th></th>
-    <th><%= t("name")%></th>
-    <th><%= t("reorder")%></th>
-    <th><%= t("image")%></th>
-    <th><%= t("tagline")%></th>
-    <th><%= t("target_url")%></th>
-    <th><%= t("visible")%></th>
-    <th><%= t("place")%></th>
-    <th>&nbsp;</th>
-  </tr>
+    <tr>
+      <th><%= t("reorder")%></th>
+      <th><%= t("name")%></th>
+      <th><%= t("image")%></th>
+      <th><%= t("tagline")%></th>
+      <th><%= t("target_url")%></th>
+      <th><%= t("visible")%></th>
+      <th><%= t("place")%></th>
+      <th><%= t("locale")%></th>
+      <th>&nbsp;</th>
+    </tr>
   </thead>
   <tbody>
     <% @banners.each do |banner|%>
@@ -33,8 +41,9 @@
         <td><%= link_to(image_tag(banner.image.url(:thumb)), banner.image.url) %></td>
         <td><%=banner.tagline%></td>
         <td><%=banner.target_url%></td>
-        <td><%=icon('tick') if banner.visible %></td>
+        <td><%=banner.visible %></td>
         <td><%=banner.place %></td>
+        <td><%=banner.locale %></td>
         <td>
           <%=link_to_edit banner%> &nbsp;
           <%=link_to_delete banner%>
@@ -71,7 +80,7 @@
           url: "<%=reorder_admin_banners_url%>"
         })
       }
-		}).disableSelection();
+    }).disableSelection();
   });
 
 </script>

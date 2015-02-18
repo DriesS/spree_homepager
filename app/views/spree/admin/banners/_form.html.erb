@@ -1,11 +1,51 @@
-<%= stylesheet_link_tag 'formtastic', 'admin/formtastic_changes' %>
+<%= f.field_container :name do %>
+  <%= f.label :name, Spree.t(:name) %>
+  <%= f.text_field :name, :class => 'fullwidth' %>
+  <%= error_message_on :banner, :name %>
+<% end %>
 
-<%= f.inputs do %>
-  <%= f.input :name, :label => t(:name) %>
-  <%= f.input :tagline, :label => t(:tagline) %>
-  <%= f.input :target_url, :label => t(:target_url) %>
-  <%= f.input :image, :label => t(:image) %>
-  <%= f.input :place, :label => t(:place) %>
-  <%= f.input :body, :label => t(:body) %>
-  <%= f.input :visible, :label => t(:visible) %>
+<%= f.field_container :tagline do %>
+  <%= f.label :tagline, Spree.t(:tagline) %>
+  <%= f.text_field :tagline, :class => 'fullwidth' %>
+  <%= error_message_on :banner, :tagline %>
+<% end %>
+
+
+<%= f.field_container :target_url do %>
+  <%= f.label :target_url, Spree.t(:target_url) %>
+  <%= f.text_field :target_url, :class => 'fullwidth' %>
+  <%= error_message_on :banner, :target_url %>
+<% end %>
+
+
+<%= f.field_container :image do %>
+  <%= f.label :image, Spree.t(:image) %>
+  <%= f.file_field :image, :class => 'fullwidth' %>
+  <%= error_message_on :banner, :image %>
+<% end %>
+
+
+<%= f.field_container :place do %>
+  <%= f.label :place, Spree.t(:place) %>
+  <%= f.text_field :place, :class => 'fullwidth' %>
+  <%= error_message_on :banner, :place %>
+<% end %>
+
+<%= f.field_container :locale do %>
+  <%= f.label :locale, Spree.t(:locale) %>
+  <%= f.select :locale, SpreeI18n::Config.available_locales, :include_blank => true %>
+  <%= error_message_on :banner, :locale %>
+<% end %>
+
+<%= f.field_container :body do %>
+  <%= f.label :body, Spree.t(:body) %>
+  <%= f.text_area :body, :class => 'fullwidth' %>
+  <%= error_message_on :banner, :body %>
+<% end %>
+
+
+<%= f.field_container :visible do %>
+  <%= f.label :visible, Spree.t(:visible) %>
+  <%= f.check_box :visible, :class => 'fullwidth' %>
+  <%= error_message_on :banner, :visible %>
 <% end %>
